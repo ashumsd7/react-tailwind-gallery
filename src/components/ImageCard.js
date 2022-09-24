@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { BsFillCameraFill } from "react-icons/bs";
-// import Lightbox from "react-image-lightbox";
 import FsLightbox from "fslightbox-react";
 import party from "party-js";
 import { saveAs } from "file-saver";
@@ -14,7 +13,7 @@ import {
 
 import { FaCloudDownloadAlt } from "react-icons/fa";
 
-function ImageCard({ image }) {
+function ImageCard({ image, index, patchImage }) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
 
@@ -32,7 +31,7 @@ function ImageCard({ image }) {
   }
   return (
     <>
-      <div className="h-[300px] hover:bg-pink-100 transition-all max-w-sm px-6 py-4 m-1 relative flex flex-col overflow-hidden bg-gray-50 rounded shadow-lg">
+      <div className="h-[300px] hover:bg-pink-100 transition-all md:max-w-sm w-full px-6 py-4 m-1 relative flex flex-col overflow-hidden bg-gray-50 rounded shadow-lg">
         <div className="relative overflow-hidden">
           <img
             src={image.webformatURL}
@@ -63,7 +62,7 @@ function ImageCard({ image }) {
           </div>
 
           {/* for gredient */}
-          <div className="absolute bottom-0 w-1/2 bg-gray-800 rounded-md bg-opacity-60 h-7"></div>
+          <div className="absolute bottom-0 w-full bg-gray-800 rounded-md bg-opacity-60 h-7"></div>
         </div>
 
         <div className="flex-1"></div>
@@ -88,15 +87,13 @@ function ImageCard({ image }) {
             className="text-black cursor-pointer font-bolder"
           />
           <button
-          className="mt-[-4px]"
+            className="mt-[-4px]"
             onClick={(e) => {
               party.sparkles(e.target, {});
-              
+              patchImage(index)
             }}
           >
-
             ❤️
-           
             {/* <AiFillHeart className="text-red-500 cursor-pointer font-bolder"></AiFillHeart> */}
           </button>
           <AiOutlineExpand
