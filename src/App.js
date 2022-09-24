@@ -50,6 +50,7 @@ function App() {
           <>
             <img
               className="object-cover mx-auto"
+              alt={images.id}
               src="https://cdni.iconscout.com/illustration/premium/thumb/not-found-4064375-3363936.png"
             ></img>
             <h2 className="font-thin text-center shadow-sm">No Image found.</h2>
@@ -60,6 +61,7 @@ function App() {
           <h1 className="mx-auto mt-32 text-3xl text-center">
             <img
               className="object-cover mx-auto rounded-lg"
+              alt="loader"
               src="https://img.wattpad.com/7aa89868baf6ee5de7f403c4268647c3b79b22d8/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f734936746a613772424c4c4b6b673d3d2d313236343335303932332e313731303439326530656433376464623436393936383138383338312e676966"
             ></img>
           </h1>
