@@ -40,7 +40,7 @@ function App() {
           }}
         />
 
-        {!isLoading && images.length == 0 && (
+        {!isLoading && images.length === 0 && (
           <h1 className="mx-auto mt-32 text-5xl text-center">
             No Images found....
           </h1>
@@ -58,7 +58,7 @@ function App() {
       </div>
 
       <div className="fixed flex items-center justify-center w-10 h-10 text-white transition-all bg-black rounded-full cursor-pointer right-4 bottom-4 hover:rotate-360 hover:bg-pink-500 hover:text-black hover:scale-125 ">
-        <a target='_blank' className="mx-2 underline" href="https://github.com/ashumsd7">
+        <a  className="mx-2 underline" href="https://github.com/ashumsd7">
           <AiFillGithub />
         </a>
       </div>

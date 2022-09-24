@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { BsFillCameraFill } from "react-icons/bs";
 // import Lightbox from "react-image-lightbox";
@@ -15,7 +15,6 @@ import {
 import { FaCloudDownloadAlt } from "react-icons/fa";
 
 function ImageCard({ image }) {
-  const ref = useRef([]);
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
 
