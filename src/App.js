@@ -1,16 +1,18 @@
 import "./App.css";
 
 import React, { useState, useEffect } from "react";
+import ImageCard from "./components/ImageCard";
+import ImageSearch from "./components/ImageSearch";
 
 function App() {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [search, setSearch] = useState("flower");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://pixabay.com/api/?key=11264456-${process.env.REACT_APP_PIXBAY_API_KEY}&q=${search}&image_type=photo`
+      `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXBAY_API_KEY}&q=${search}&image_type=photo`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -22,47 +24,36 @@ function App() {
         setIsLoading(false);
         console.log(err);
       });
-  }, []);
+  }, [search]);
   return (
     <>
-      <div className="max-w-sm px-6 py-4 overflow-hidden rounded shadow-lg">
-        <img
-          src="https://source.unsplash.com/random"
-          alt=""
-          className="w-full"
-        />
-        <div className="px-6 py-4">
-          <div className="text-xl font-bold text-purple-500">
-            Photo By ABC Joe
-          </div>
-          <ul>
-            <li>
-              <strong className=""> Views: </strong>
-            </li>
-            <li>
-              <strong className=""> Downloads: </strong>
-            </li>
-            second
-            <li>
-              <strong className=""> Likes: </strong>
-            </li>
-            <li>
-              <strong className=""> Views: </strong>
-            </li>
-          </ul>
-        </div>
+      <div className="container mx-auto">
+        
 
-        <div className="px-6 py-4">
-          <span className="inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-            #tag1
-          </span>
-          <span className="inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-            #tag2
-          </span>
-          <span className="inline-block px-3 py-1 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-            #tag3
-          </span>
-        </div>
+  <h3 className="my-4 font-serif text-3xl italic font-semibold text-center text-pink-500 "> Image Gallery ft. React </h3>
+
+        <ImageSearch
+        
+          setText={(val) => {
+            setSearch(val);
+          }}
+        />
+
+        {!isLoading && images.length == 0 && (
+          <h1 className="mx-auto mt-32 text-5xl text-center">
+            No Images found....
+          </h1>
+        )}
+
+        {isLoading ? (
+          <h1 className="mx-auto mt-32 text-3xl text-center">Loading....</h1>
+        ) : (
+          <div className="grid grid-cols-3 gap-4">
+            {images.map((image) => {
+              return <ImageCard key={image.id} image={image} />;
+            })}
+          </div>
+        )}
       </div>
     </>
   );
