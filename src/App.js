@@ -49,7 +49,7 @@ function App() {
         {isLoading ? (
           <h1 className="mx-auto mt-32 text-3xl text-center">Loading....</h1>
         ) : (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
             {images.map((image) => {
               return <ImageCard key={image.id} image={image} />;
             })}
