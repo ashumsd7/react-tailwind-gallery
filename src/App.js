@@ -9,6 +9,7 @@ function App() {
   const [images, setImages] = useState([]);
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [randomWords, setRandomWords] = useState([]);
 
   function patchImage(index) {
     let allImages = [...images];
@@ -17,8 +18,16 @@ function App() {
   }
 
   useEffect(() => {
-    setSearch(search)
+    setSearch(search);
     setIsLoading(true);
+
+    fetch("https://random-word-api.herokuapp.com/all")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(Math.floor(Math.random() * 100), 6)
+        console.log(data.splice(Math.floor(Math.random() * 100), 6));
+        setRandomWords(data.splice(Math.floor(Math.random() * 100), 6));
+      });
     fetch(
       `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXBAY_API_KEY}&q=${search}&image_type=photo`
     )
@@ -42,12 +51,30 @@ function App() {
         </h3>
 
         <ImageSearch
-        search={search}
+          search={search}
           setText={(val) => {
             setSearch(val);
-
           }}
         />
+
+
+      <div className="mx-2 font-thin"> What About these  ?</div>
+
+        <div className="text-teal-300">
+          {randomWords.map((word) => {
+            return (
+              <small
+                key={word}
+                className="inline-block p-1 mx-2 mt-1 font-semibold text-white bg-gray-500 rounded-full cursor-pointer"
+                onClick={() => {
+                  setSearch(word);
+                }}
+              >
+                #{word}
+              </small>
+            );
+          })}
+        </div>
 
         {!isLoading && images.length === 0 && (
           <>
