@@ -13,7 +13,7 @@ import {
 
 import { FaCloudDownloadAlt } from "react-icons/fa";
 
-function ImageCard({ image, index, patchImage }) {
+function ImageCard({ image, index, patchImage ,setSearch}) {
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
 
@@ -29,6 +29,10 @@ function ImageCard({ image, index, patchImage }) {
   function onImageDownload(imageURL) {
     saveAs(imageURL, "image.jpg");
   }
+  function onTagClick(tag){
+    setSearch(tag)
+    
+  }
   return (
     <>
       <div className="h-[300px] hover:bg-pink-100 transition-all md:max-w-sm w-full px-6 py-4 m-1 relative flex flex-col overflow-hidden bg-gray-50 rounded shadow-lg">
@@ -36,6 +40,9 @@ function ImageCard({ image, index, patchImage }) {
           <img
             src={image.webformatURL}
             alt={image.id}
+            onDoubleClick={() => {
+              onExpandImage(image.webformatURL);
+            }}
             className="object-cover w-full transition-all ease-in border border-pink-300 rounded-lg shadow-lg cursor-pointer hover:scale-150"
           />
 
@@ -72,7 +79,10 @@ function ImageCard({ image, index, patchImage }) {
             return (
               <small
                 key={tag}
-                className="inline-block p-1 mx-2 mt-1 font-semibold text-white bg-gray-500 rounded-full"
+                className="inline-block p-1 mx-2 mt-1 font-semibold text-white bg-gray-500 rounded-full cursor-pointer"
+                onClick={()=>{
+                    onTagClick(tag)
+                }}
               >
                 #{tag}
               </small>
@@ -90,7 +100,7 @@ function ImageCard({ image, index, patchImage }) {
             className="mt-[-4px]"
             onClick={(e) => {
               party.sparkles(e.target, {});
-              patchImage(index)
+              patchImage(index);
             }}
           >
             ❤️

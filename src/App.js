@@ -17,6 +17,7 @@ function App() {
   }
 
   useEffect(() => {
+    setSearch(search)
     setIsLoading(true);
     fetch(
       `https://pixabay.com/api/?key=${process.env.REACT_APP_PIXBAY_API_KEY}&q=${search}&image_type=photo`
@@ -41,8 +42,10 @@ function App() {
         </h3>
 
         <ImageSearch
+        search={search}
           setText={(val) => {
             setSearch(val);
+
           }}
         />
 
@@ -74,6 +77,7 @@ function App() {
                   index={index}
                   patchImage={patchImage}
                   image={image}
+                  setSearch={setSearch}
                 />
               );
             })}
