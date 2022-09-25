@@ -11,7 +11,7 @@ function ImageSearch({ setText, search }) {
   }, [search]);
 
   return (
-    <form onSubmit={onSearchImage} className="w-full p-2 m-2 mx-auto md:w-1/3">
+    <form onSubmit={onSearchImage} className="sticky top-2 z-[999] m-2 mx-auto  md:w-1/3">
       <label
         for="default-search"
         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
